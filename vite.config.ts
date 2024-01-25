@@ -31,6 +31,7 @@ export default defineConfig(({ mode }) => {
       'process.env.REACT_APP_CTP_AUTH_URL': JSON.stringify(env.REACT_APP_CTP_AUTH_URL),
       'process.env.REACT_APP_CTP_API_URL': JSON.stringify(env.REACT_APP_CTP_API_URL),
       'process.env.REACT_APP_CTP_SCOPES': JSON.stringify(env.REACT_APP_CTP_SCOPES),
+      'process.env.REACT_APP_PUBLIC_URL': JSON.stringify(env.REACT_APP_PUBLIC_URL),
     }
   }
 });
