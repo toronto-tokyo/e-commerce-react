@@ -24,6 +24,7 @@ const useSignUpForm = () => {
     password: register('password'),
     firstName: register('firstName'),
     lastName: register('lastName'),
+    dateOfBirth: register('dateOfBirth'),
   };
 
   return {

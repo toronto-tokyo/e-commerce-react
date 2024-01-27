@@ -35,6 +35,13 @@ const SignUpForm = () => {
         register={formRegister.lastName}
         error={errors.lastName?.message}
       />
+      <AuthInputBlock
+        id="dateOfBirth"
+        type="date"
+        label="Date of birth"
+        register={formRegister.dateOfBirth}
+        error={errors.dateOfBirth?.message}
+      />
       <button type="submit" className="bg-slate-300" disabled={isValid}>
         Sign Up
       </button>
