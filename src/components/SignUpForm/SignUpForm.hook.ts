@@ -23,6 +23,7 @@ const useSignUpForm = () => {
     email: register('email'),
     password: register('password'),
     firstName: register('firstName'),
+    lastName: register('lastName'),
   };
 
   return {

@@ -17,6 +17,10 @@ const schema = yup.object({
     .string()
     .required('Please enter a first name')
     .matches(/^[a-zA-Z]+$/, 'Should not contain special characters or numbers'),
+  lastName: yup
+    .string()
+    .required('Please enter a last name')
+    .matches(/^[a-zA-Z]+$/, 'Should not contain special characters or numbers'),
 });
 
 export default schema;

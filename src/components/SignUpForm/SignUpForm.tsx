@@ -28,6 +28,13 @@ const SignUpForm = () => {
         register={formRegister.firstName}
         error={errors.firstName?.message}
       />
+      <AuthInputBlock
+        id="lastName"
+        type="text"
+        label="Last name"
+        register={formRegister.lastName}
+        error={errors.lastName?.message}
+      />
       <button type="submit" className="bg-slate-300" disabled={isValid}>
         Sign Up
       </button>
