@@ -1,3 +1,4 @@
+import getPasswordErrMessage from 'utils/getPasswordErrMessage';
 import * as yup from 'yup';
 
 const schema = yup.object({
@@ -5,6 +6,13 @@ const schema = yup.object({
     .string()
     .required('Email is required field')
     .email('Invalid format, example:  example@email.com'),
+  password: yup
+    .string()
+    .required('Please enter a password')
+    .matches(/^(?=.*[A-Z]).*$/, getPasswordErrMessage('uppercase'))
+    .matches(/^(?=.*[a-z]).*$/, getPasswordErrMessage('lowercase'))
+    .matches(/^(?=.*\d).*$/, getPasswordErrMessage('number'))
+    .min(8, 'Password must have at least 8 characters'),
 });
 
 export default schema;

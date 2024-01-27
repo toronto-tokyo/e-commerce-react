@@ -1,10 +1,12 @@
 import { UseFormRegisterReturn } from 'react-hook-form';
 
-interface IAuthInputProps {
+export interface IAuthInputProps {
   id: string;
   type: string;
   register: UseFormRegisterReturn;
   isInputValid: boolean;
 }
 
-export default IAuthInputProps;
+export interface IUseAuthInput {
+  type: string;
+}

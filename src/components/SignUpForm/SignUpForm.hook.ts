@@ -21,6 +21,7 @@ const useSignUpForm = () => {
 
   const formRegister = {
     email: register('email'),
+    password: register('password'),
   };
 
   return {

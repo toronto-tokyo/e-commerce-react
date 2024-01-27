@@ -1,5 +1,8 @@
 import React from 'react';
-import IAuthInputProps from './AuthInput.interface';
+
+import useAuthInput from './AuthInput.hook';
+import PasswordVisionToggler from 'components/PasswordVisionToggler';
+import { IAuthInputProps } from './AuthInput.interface';
 
 const AuthInput: React.FC<IAuthInputProps> = ({
   id,
@@ -7,11 +10,30 @@ const AuthInput: React.FC<IAuthInputProps> = ({
   type,
   isInputValid,
 }) => {
-  const className = `outline-none rounded border-2  px-3 py-2 ${
-    isInputValid ? 'border-gray-400' : 'border-red-500'
-  }`;
+  const { inputType, showPassword, togglePasswordVisibility } = useAuthInput({
+    type,
+  });
 
-  return <input className={className} id={id} type={type} {...register} />;
+  return (
+    <div
+      className={`flex rounded border-2 ${
+        isInputValid ? 'border-gray-400' : 'border-red-500'
+      }`}
+    >
+      <input
+        className="outline-none px-3 py-2 grow"
+        id={id}
+        type={inputType}
+        {...register}
+      />
+      {type === 'password' && (
+        <PasswordVisionToggler
+          isVisible={showPassword}
+          handleClick={togglePasswordVisibility}
+        />
+      )}
+    </div>
+  );
 };
 
 export default AuthInput;
