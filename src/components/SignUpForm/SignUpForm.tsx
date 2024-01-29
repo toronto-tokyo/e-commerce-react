@@ -6,7 +6,7 @@ const SignUpForm = () => {
   const { formRegister, onSubmit, errors, isValid } = useSignUpForm();
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} className="flex flex-col gap-3">
       <AuthInputBlock
         id="email"
         type="email"
@@ -49,7 +49,7 @@ const SignUpForm = () => {
         register={formRegister.dateOfBirth}
         error={errors.dateOfBirth?.message}
       />
-      <button type="submit" className="bg-slate-300" disabled={isValid}>
+      <button type="submit" className="bg-slate-300 mt-6" disabled={isValid}>
         Sign Up
       </button>
     </form>

@@ -11,7 +11,7 @@ const AuthInputBlock: React.FC<IAuthInputBlockProps> = ({
 }) => {
   return (
     <div className="flex flex-col">
-      <label htmlFor={id} className="mb-2 pl-1">
+      <label htmlFor={id} className="mb-2 pl-1 text-lg">
         {label}
       </label>
       <AuthInput
