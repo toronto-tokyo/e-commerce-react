@@ -1,6 +1,7 @@
 import React from 'react';
 import useSignUpForm from './SignUpForm.hook';
 import AuthInputBlock from 'components/AuthInputBlock';
+import AuthSubmitBtn from 'components/AuthSubmitBtn';
 
 const SignUpForm = () => {
   const { formRegister, onSubmit, errors, isValid } = useSignUpForm();
@@ -49,9 +50,9 @@ const SignUpForm = () => {
         register={formRegister.dateOfBirth}
         error={errors.dateOfBirth?.message}
       />
-      <button type="submit" className="bg-slate-300 mt-6" disabled={isValid}>
+      <AuthSubmitBtn disabled={isValid} className="self-center mt-6">
         Sign Up
-      </button>
+      </AuthSubmitBtn>
     </form>
   );
 };
