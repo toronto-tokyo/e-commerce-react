@@ -22,6 +22,13 @@ const SignUpForm = () => {
         error={errors.password?.message}
       />
       <AuthInputBlock
+        id="password"
+        type="password"
+        label="Confirm password"
+        register={formRegister.confirmPassword}
+        error={errors.confirmPassword?.message}
+      />
+      <AuthInputBlock
         id="firstName"
         type="text"
         label="First name"

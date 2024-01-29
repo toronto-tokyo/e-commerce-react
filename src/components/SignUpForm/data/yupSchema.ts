@@ -14,6 +14,10 @@ const schema = yup.object({
     .matches(/^(?=.*[a-z]).*$/, getPasswordErrMessage('lowercase'))
     .matches(/^(?=.*\d).*$/, getPasswordErrMessage('number'))
     .min(8, 'Password must have at least 8 characters'),
+  confirmPassword: yup
+    .string()
+    .required()
+    .oneOf([yup.ref('password')], 'Passwords do not match'),
   firstName: yup
     .string()
     .required('Please enter a first name')

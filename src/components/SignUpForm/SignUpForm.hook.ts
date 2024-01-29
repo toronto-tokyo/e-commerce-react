@@ -22,6 +22,7 @@ const useSignUpForm = () => {
   const formRegister = {
     email: register('email'),
     password: register('password'),
+    confirmPassword: register('confirmPassword'),
     firstName: register('firstName'),
     lastName: register('lastName'),
     dateOfBirth: register('dateOfBirth'),
