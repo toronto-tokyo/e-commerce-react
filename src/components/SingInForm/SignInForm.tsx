@@ -2,12 +2,16 @@ import React from 'react';
 import useSignInForm from './SignInForm.hook';
 import AuthSubmitBtn from 'components/AuthSubmitBtn';
 import AuthInputBlock from 'components/AuthInputBlock';
+import AuthErrorMessage from 'components/AuthErrorMessage';
 
 const SignInForm: React.FC = () => {
-  const { errors, formRegister, isValid, onSubmit } = useSignInForm();
-
+  const { errors, formRegister, isValid, onSubmit, authErrorMessage } =
+    useSignInForm();
   return (
     <form onSubmit={onSubmit} className="flex flex-col gap-3">
+      {authErrorMessage && (
+        <AuthErrorMessage>{authErrorMessage}</AuthErrorMessage>
+      )}
       <AuthInputBlock
         id="email"
         label="Email"
