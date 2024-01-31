@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import useAuth from 'hook/useAuth';
 import authPasswordFlow from 'utils/authentication/authPasswordFlow';
 import loginCustomer from 'utils/authentication/loginCustomer';
+import { useNavigate } from 'react-router-dom';
 
 const useSignInForm = () => {
   const { authErrorMessage, setAuthErrorMessage, setIsLoggedIn } = useAuth();
@@ -15,6 +16,7 @@ const useSignInForm = () => {
     resolver: yupResolver(schema),
     mode: 'onChange',
   });
+  const navigate = useNavigate();
 
   const formRegister = {
     email: register('email'),
@@ -32,6 +34,7 @@ const useSignInForm = () => {
         password: formData.password,
       });
       setIsLoggedIn(true);
+      navigate('/');
     } catch (e) {
       if (e instanceof Error && e.message === '400') {
         setAuthErrorMessage('Failed to sign in: invalid email or/and password');
