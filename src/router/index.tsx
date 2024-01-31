@@ -5,6 +5,7 @@ import HomePage from 'pages/HomePage';
 import NotFoundPage from 'pages/NotFoundPage';
 import SignInPage from 'pages/SignInPage';
 import SignUpPage from 'pages/SignUpPage';
+import AuthPrivateRoute from 'hoc/AuthPrivateRoute';
 
 const router = createBrowserRouter([
   {
@@ -21,7 +22,11 @@ const router = createBrowserRouter([
       },
       {
         path: 'sign-in',
-        element: <SignInPage />,
+        element: (
+          <AuthPrivateRoute>
+            <SignInPage />
+          </AuthPrivateRoute>
+        ),
       },
       {
         path: 'sign-up',
