@@ -7,7 +7,8 @@ import loginCustomer from 'utils/authentication/loginCustomer';
 import { useNavigate } from 'react-router-dom';
 
 const useSignInForm = () => {
-  const { authErrorMessage, setAuthErrorMessage, setIsLoggedIn } = useAuth();
+  const { signInErrorMessage, setSignInErrorMessage, setIsLoggedIn } =
+    useAuth();
   const {
     register,
     formState: { isValid, errors },
@@ -37,7 +38,9 @@ const useSignInForm = () => {
       navigate('/');
     } catch (e) {
       if (e instanceof Error && e.message === '400') {
-        setAuthErrorMessage('Failed to sign in: invalid email or/and password');
+        setSignInErrorMessage(
+          'Failed to sign in: invalid email or/and password'
+        );
       }
     }
   });
@@ -47,7 +50,7 @@ const useSignInForm = () => {
     onSubmit,
     isValid,
     errors,
-    authErrorMessage,
+    signInErrorMessage,
   };
 };
 

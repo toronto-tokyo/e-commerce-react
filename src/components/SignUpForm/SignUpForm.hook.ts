@@ -3,8 +3,10 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 import schema from './data/yupSchema';
 import signUpCustomer from 'utils/authentication/singUpCustomer';
+import useAuth from 'hook/useAuth';
 
 const useSignUpForm = () => {
+  const { setSignUpErrorMessage, signUpErrorMessage } = useAuth();
   const {
     register,
     handleSubmit,
@@ -17,7 +19,15 @@ const useSignUpForm = () => {
   const onSubmit = handleSubmit(async (formData) => {
     try {
       await signUpCustomer(formData);
-    } catch (e) {}
+    } catch (e) {
+      if (e instanceof Error && e.message === '400') {
+        setSignUpErrorMessage(
+          'There is already an existing customer with the provided email.'
+        );
+      } else {
+        setSignUpErrorMessage('Something went wrong. Try later');
+      }
+    }
   });
 
   const formRegister = {
@@ -34,6 +44,7 @@ const useSignUpForm = () => {
     onSubmit,
     errors,
     isValid,
+    signUpErrorMessage,
   };
 };
 

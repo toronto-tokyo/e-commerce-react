@@ -5,12 +5,12 @@ import AuthInputBlock from 'components/AuthInputBlock';
 import AuthErrorMessage from 'components/AuthErrorMessage';
 
 const SignInForm: React.FC = () => {
-  const { errors, formRegister, isValid, onSubmit, authErrorMessage } =
+  const { errors, formRegister, isValid, onSubmit, signInErrorMessage } =
     useSignInForm();
   return (
     <form onSubmit={onSubmit} className="flex flex-col gap-3">
-      {authErrorMessage && (
-        <AuthErrorMessage>{authErrorMessage}</AuthErrorMessage>
+      {signInErrorMessage && (
+        <AuthErrorMessage>{signInErrorMessage}</AuthErrorMessage>
       )}
       <AuthInputBlock
         id="email"
