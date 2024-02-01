@@ -50,7 +50,7 @@ const SignUpForm = () => {
         register={formRegister.dateOfBirth}
         error={errors.dateOfBirth?.message}
       />
-      <AuthSubmitBtn disabled={isValid} className="self-center mt-6">
+      <AuthSubmitBtn disabled={!isValid} className="self-center mt-6">
         Sign Up
       </AuthSubmitBtn>
     </form>

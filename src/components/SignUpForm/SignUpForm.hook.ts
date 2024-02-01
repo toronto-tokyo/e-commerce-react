@@ -2,21 +2,22 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import schema from './data/yupSchema';
+import signUpCustomer from 'utils/authentication/singUpCustomer';
 
 const useSignUpForm = () => {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors, isValid },
   } = useForm({
     resolver: yupResolver(schema),
     mode: 'onChange',
   });
 
-  const onSubmit = handleSubmit((data) => {
-    console.log(data);
-    reset();
+  const onSubmit = handleSubmit(async (formData) => {
+    try {
+      await signUpCustomer(formData);
+    } catch (e) {}
   });
 
   const formRegister = {
