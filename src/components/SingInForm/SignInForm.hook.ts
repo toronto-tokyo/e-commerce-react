@@ -41,6 +41,8 @@ const useSignInForm = () => {
         setSignInErrorMessage(
           'Failed to sign in: invalid email or/and password'
         );
+      } else {
+        setSignInErrorMessage('Something went wrong. Try later');
       }
     }
   });
