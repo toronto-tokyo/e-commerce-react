@@ -30,7 +30,11 @@ const router = createBrowserRouter([
       },
       {
         path: 'sign-up',
-        element: <SignUpPage />,
+        element: (
+          <AuthPrivateRoute>
+            <SignUpPage />
+          </AuthPrivateRoute>
+        ),
       },
       {
         path: '*',
