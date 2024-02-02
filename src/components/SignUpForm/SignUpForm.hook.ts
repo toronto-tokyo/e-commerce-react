@@ -2,11 +2,12 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import schema from './data/yupSchema';
-import signUpCustomer from 'utils/authentication/singUpCustomer';
 import useAuth from 'hook/useAuth';
+import useHandleSignUpCustomer from 'hook/useHandleSignUpCustomer';
 
 const useSignUpForm = () => {
   const { setSignUpErrorMessage, signUpErrorMessage } = useAuth();
+  const handleSignUpCustomer = useHandleSignUpCustomer();
   const {
     register,
     handleSubmit,
@@ -16,19 +17,13 @@ const useSignUpForm = () => {
     mode: 'onChange',
   });
 
-  const onSubmit = handleSubmit(async (formData) => {
-    try {
-      await signUpCustomer(formData);
-    } catch (e) {
-      if (e instanceof Error && e.message === '400') {
-        setSignUpErrorMessage(
-          'There is already an existing customer with the provided email.'
-        );
-      } else {
-        setSignUpErrorMessage('Something went wrong. Try later');
-      }
-    }
-  });
+  const onSubmit = handleSubmit(
+    async (formData) =>
+      await handleSignUpCustomer({
+        customerData: formData,
+        setErrorMessage: setSignUpErrorMessage,
+      })
+  );
 
   const formRegister = {
     email: register('email'),

@@ -1,6 +1,6 @@
 import getTokens from './getTokens';
 
-interface ISignUpCustomerProps {
+export interface ISignUpCustomerParams {
   email: string;
   password: string;
   firstName: string;
@@ -8,7 +8,7 @@ interface ISignUpCustomerProps {
   dateOfBirth: string;
 }
 
-const signUpCustomer = async (customerData: ISignUpCustomerProps) => {
+const signUpCustomer = async (customerData: ISignUpCustomerParams) => {
   const link = `${process.env.REACT_APP_CTP_API_URL}/${process.env.REACT_APP_CTP_PROJECT_KEY}/me/signup`;
 
   const response = await fetch(link, {
