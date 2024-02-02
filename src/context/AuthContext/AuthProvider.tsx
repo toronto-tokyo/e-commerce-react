@@ -9,7 +9,8 @@ interface IAuthProviderProps {
 
 const AuthProvider: React.FC<IAuthProviderProps> = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [authErrorMessage, setAuthErrorMessage] = useState<string>('');
+  const [signInErrorMessage, setSignInErrorMessage] = useState<string>('');
+  const [signUpErrorMessage, setSignUpErrorMessage] = useState<string>('');
 
   useEffect(() => {
     (async () => {
@@ -27,8 +28,10 @@ const AuthProvider: React.FC<IAuthProviderProps> = ({ children }) => {
       value={{
         isLoggedIn,
         setIsLoggedIn,
-        authErrorMessage,
-        setAuthErrorMessage,
+        signInErrorMessage,
+        setSignInErrorMessage,
+        signUpErrorMessage,
+        setSignUpErrorMessage,
       }}
     >
       {children}

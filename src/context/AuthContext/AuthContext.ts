@@ -3,15 +3,19 @@ import { createContext } from 'react';
 interface IAuthContextData {
   isLoggedIn: boolean;
   setIsLoggedIn: (isLoggedIn: boolean) => void;
-  authErrorMessage: string;
-  setAuthErrorMessage: (authErrorMessage: string) => void;
+  signInErrorMessage: string;
+  setSignInErrorMessage: (authErrorMessage: string) => void;
+  signUpErrorMessage: string;
+  setSignUpErrorMessage: (signUpErrorMessage: string) => void;
 }
 
 const initialData = {
   isLoggedIn: false,
   setIsLoggedIn: () => {},
-  authErrorMessage: '',
-  setAuthErrorMessage: () => {},
+  signInErrorMessage: '',
+  setSignInErrorMessage: () => {},
+  signUpErrorMessage: '',
+  setSignUpErrorMessage: () => {},
 };
 
 const AuthContext = createContext<IAuthContextData>(initialData);

@@ -2,22 +2,28 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import schema from './data/yupSchema';
+import useAuth from 'hook/useAuth';
+import useHandleSignUpCustomer from 'hook/useHandleSignUpCustomer';
 
 const useSignUpForm = () => {
+  const { setSignUpErrorMessage, signUpErrorMessage } = useAuth();
+  const handleSignUpCustomer = useHandleSignUpCustomer();
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors, isValid },
   } = useForm({
     resolver: yupResolver(schema),
     mode: 'onChange',
   });
 
-  const onSubmit = handleSubmit((data) => {
-    console.log(data);
-    reset();
-  });
+  const onSubmit = handleSubmit(
+    async (formData) =>
+      await handleSignUpCustomer({
+        customerData: formData,
+        setErrorMessage: setSignUpErrorMessage,
+      })
+  );
 
   const formRegister = {
     email: register('email'),
@@ -33,6 +39,7 @@ const useSignUpForm = () => {
     onSubmit,
     errors,
     isValid,
+    signUpErrorMessage,
   };
 };
 

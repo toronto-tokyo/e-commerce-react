@@ -1,9 +1,9 @@
-interface ILoginCustomerParams {
+export interface ISignInCustomerParams {
   email: string;
   password: string;
 }
 
-const loginCustomer = async ({ email, password }: ILoginCustomerParams) => {
+const signInCustomer = async ({ email, password }: ISignInCustomerParams) => {
   const link = `${process.env.REACT_APP_CTP_API_URL}/${process.env.REACT_APP_CTP_PROJECT_KEY}/me/login`;
   const response = await fetch(link, {
     method: 'POST',
@@ -22,4 +22,4 @@ const loginCustomer = async ({ email, password }: ILoginCustomerParams) => {
   }
 };
 
-export default loginCustomer;
+export default signInCustomer;
