@@ -1,5 +1,4 @@
 interface INavListItemProps {
-  to: string;
   children: React.ReactNode;
 }
 

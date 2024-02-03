@@ -1,5 +1,10 @@
 interface INavigationProps {
-  children: React.ReactNode;
+  items: NavItem[];
+}
+
+interface NavItem {
+  key: string;
+  element: React.ReactNode;
 }
 
 export default INavigationProps;
