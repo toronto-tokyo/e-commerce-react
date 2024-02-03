@@ -12,6 +12,7 @@ export default defineConfig(({ mode }) => {
         app: '/src/app',
         assets: '/src/assets',
         components: '/src/components',
+        context: '/src/context',
         hoc: '/src/hoc',
         hook: '/src/hook',
         layouts: '/src/layouts',
@@ -19,6 +20,7 @@ export default defineConfig(({ mode }) => {
         pages: '/src/pages',
         store: '/src/store',
         router: '/src/router',
+        types: '/src/types',
         shared: '/src/shared',
         test: '/src/test',
         utils: '/src/utils',
@@ -31,6 +33,7 @@ export default defineConfig(({ mode }) => {
       'process.env.REACT_APP_CTP_AUTH_URL': JSON.stringify(env.REACT_APP_CTP_AUTH_URL),
       'process.env.REACT_APP_CTP_API_URL': JSON.stringify(env.REACT_APP_CTP_API_URL),
       'process.env.REACT_APP_CTP_SCOPES': JSON.stringify(env.REACT_APP_CTP_SCOPES),
+      'process.env.REACT_APP_PUBLIC_URL': JSON.stringify(env.REACT_APP_PUBLIC_URL),
     }
   }
 });
