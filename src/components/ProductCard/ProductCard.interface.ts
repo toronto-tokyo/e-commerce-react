@@ -1,6 +1,7 @@
+import { IProduct } from 'types/api';
+
 interface IProductCardProps {
-  imageUrl: string;
-  name: string;
+  product: IProduct;
 }
 
 export default IProductCardProps;
