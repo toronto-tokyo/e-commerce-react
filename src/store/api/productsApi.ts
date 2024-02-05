@@ -1,5 +1,9 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { IPagedQueryResult } from 'types/api';
+import {
+  IPagedQueryResult,
+  IProductTypePagedQueryResponse,
+  IProductsRequestParams,
+} from 'types/api';
 import getTokens from 'utils/authentication/getTokens';
 
 export const productsApi = createApi({
@@ -8,9 +12,27 @@ export const productsApi = createApi({
     baseUrl: `${process.env.REACT_APP_CTP_API_URL}/${process.env.REACT_APP_CTP_PROJECT_KEY}/`,
   }),
   endpoints: (builder) => ({
-    getProducts: builder.query<IPagedQueryResult, ''>({
+    getProducts: builder.query<IPagedQueryResult, IProductsRequestParams>({
+      query: ({ brands }) => {
+        let filterParams = '';
+        if (brands) {
+          filterParams += `filter.query=variants.attributes.designer.key:${brands}&`;
+        }
+        const facet = 'facet=variants.attributes.designer.key';
+
+        const searchParams = `${filterParams}${facet}`;
+        return {
+          url: `product-projections/search?${searchParams}`,
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${getTokens().accessToken}`,
+          },
+        };
+      },
+    }),
+    getProductTypes: builder.query<IProductTypePagedQueryResponse, ''>({
       query: () => ({
-        url: 'product-projections/search',
+        url: '/product-types',
         method: 'GET',
         headers: {
           Authorization: `Bearer ${getTokens().accessToken}`,
@@ -20,4 +42,4 @@ export const productsApi = createApi({
   }),
 });
 
-export const { useGetProductsQuery } = productsApi;
+export const { useGetProductsQuery, useGetProductTypesQuery } = productsApi;

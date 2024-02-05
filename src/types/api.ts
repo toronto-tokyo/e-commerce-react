@@ -35,7 +35,7 @@ export interface IProduct {
   id: string;
   version: number;
   key: string;
-  productType: IProductType;
+  productType: IProductTypeReference;
   published: boolean;
   hasStagedChanges: boolean;
   name: ILocalizedString;
@@ -98,7 +98,7 @@ interface IProductDiscount {
   typeId: string;
 }
 
-interface IProductType {
+interface IProductTypeReference {
   id: string;
   typeId: string;
 }
@@ -116,3 +116,58 @@ interface ICategory {
 interface ISearchKeywords {}
 
 interface IFacetResult {}
+
+export interface IProductTypePagedQueryResponse {
+  limit: number;
+  offset: number;
+  count: number;
+  total: number;
+  results: IProductType[];
+}
+
+export interface IProductType {
+  id: string;
+  version: number;
+  name: string;
+  description: string;
+  attributes: IAttributeDefinition[];
+}
+
+export interface IAttributeDefinition {
+  type: IAttributeType;
+  name: string;
+  label: string;
+  isRequired: boolean;
+}
+
+export type IAttributeType =
+  | IAttributeBooleanType
+  | IAttributeTextType
+  | IAttributeLocalizableTextType
+  | IAttributeEnumType;
+
+interface IAttributeBooleanType {
+  name: 'boolean';
+}
+
+interface IAttributeTextType {
+  name: 'text';
+}
+
+interface IAttributeLocalizableTextType {
+  name: 'ltext';
+}
+
+interface IAttributeEnumType {
+  name: 'enum';
+  values: IAttributePlainEnumValue[];
+}
+
+interface IAttributePlainEnumValue {
+  key: string;
+  label: string;
+}
+
+export interface IProductsRequestParams {
+  brands: string | null;
+}
