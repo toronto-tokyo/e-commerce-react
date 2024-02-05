@@ -7,10 +7,17 @@ import { useSearchParams } from 'react-router-dom';
 const CatalogPage: React.FC = () => {
   const [searchParams] = useSearchParams();
   const brands = searchParams.get('brands');
+  const colors = searchParams.get('colors');
   const { data } = useGetProductsQuery({
     brands:
       brands &&
       brands
+        .split(',')
+        .map((item) => `"${item}"`)
+        .join(','),
+    colors:
+      colors &&
+      colors
         .split(',')
         .map((item) => `"${item}"`)
         .join(','),

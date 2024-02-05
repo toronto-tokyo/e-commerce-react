@@ -144,7 +144,8 @@ export type IAttributeType =
   | IAttributeBooleanType
   | IAttributeTextType
   | IAttributeLocalizableTextType
-  | IAttributeEnumType;
+  | IAttributeEnumType
+  | IAttributeLocalizedEnumType;
 
 interface IAttributeBooleanType {
   name: 'boolean';
@@ -168,6 +169,17 @@ interface IAttributePlainEnumValue {
   label: string;
 }
 
+interface IAttributeLocalizedEnumType {
+  name: 'lenum';
+  values: IAttributeLocalizedEnumValue[];
+}
+
+interface IAttributeLocalizedEnumValue {
+  key: string;
+  label: Record<string, string>;
+}
+
 export interface IProductsRequestParams {
   brands: string | null;
+  colors: string | null;
 }

@@ -13,12 +13,16 @@ export const productsApi = createApi({
   }),
   endpoints: (builder) => ({
     getProducts: builder.query<IPagedQueryResult, IProductsRequestParams>({
-      query: ({ brands }) => {
+      query: ({ brands, colors }) => {
         let filterParams = '';
         if (brands) {
           filterParams += `filter.query=variants.attributes.designer.key:${brands}&`;
         }
-        const facet = 'facet=variants.attributes.designer.key';
+        if (colors) {
+          filterParams += `filter.query=variants.attributes.color.key:${colors}&`;
+        }
+        const facet =
+          'facet=variants.attributes.designer.key&facet=variants.attributes.color.key';
 
         const searchParams = `${filterParams}${facet}`;
         return {
