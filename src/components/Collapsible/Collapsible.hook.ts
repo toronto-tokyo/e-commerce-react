@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 
 interface IUseCollapsible {
+  isOpen: boolean;
   maxHeight: number | undefined;
 }
 
-const useCollapsible = ({ maxHeight }: IUseCollapsible) => {
-  const [isOpen, setIsOpen] = useState(false);
+const useCollapsible = ({ maxHeight, isOpen }: IUseCollapsible) => {
   const [height, setHeight] = useState(0);
   const contentRef = useRef<HTMLDivElement>(null);
 
@@ -19,14 +19,11 @@ const useCollapsible = ({ maxHeight }: IUseCollapsible) => {
     } else {
       setHeight(0);
     }
-  }, [isOpen, height, maxHeight]);
-
-  const toggleIsOpen = () => setIsOpen((prev) => !prev);
+  }, [isOpen, maxHeight]);
 
   return {
     contentRef,
     height,
-    toggleIsOpen,
   };
 };
 export default useCollapsible;

@@ -184,4 +184,5 @@ export interface IProductsRequestParams {
   colors: string | null;
   minPrice: string | null;
   maxPrice: string | null;
+  sort: string;
 }

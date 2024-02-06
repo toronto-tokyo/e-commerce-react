@@ -13,7 +13,7 @@ export const productsApi = createApi({
   }),
   endpoints: (builder) => ({
     getProducts: builder.query<IPagedQueryResult, IProductsRequestParams>({
-      query: ({ brands, colors, minPrice, maxPrice }) => {
+      query: ({ brands, colors, minPrice, maxPrice, sort }) => {
         let filterParams = '';
         if (brands) {
           filterParams += `filter.query=variants.attributes.designer.key:${brands}&`;
@@ -26,10 +26,25 @@ export const productsApi = createApi({
           const searchMaxPrice = maxPrice ? Number(maxPrice) * 100 : '*';
           filterParams += `filter.query=variants.price.centAmount:range (${searchMinPrice} to ${searchMaxPrice})&`;
         }
+        let sortParams = '';
+        switch (sort) {
+          case 'nameAsc':
+            sortParams += 'sort=name.en asc&';
+            break;
+          case 'nameDesc':
+            sortParams += 'sort=name.en desc&';
+            break;
+          case 'priceAsc':
+            sortParams += 'sort=price asc&';
+            break;
+          case 'priceDesc':
+            sortParams += 'sort=price desc&';
+            break;
+        }
         const facet =
           'facet=variants.attributes.designer.key&facet=variants.attributes.color.key&facet=variants.price.centAmount&';
 
-        const searchParams = `${filterParams}${facet}`;
+        const searchParams = `${filterParams}${sortParams}${facet}`;
         return {
           url: `product-projections/search?${searchParams}`,
           method: 'GET',

@@ -1,7 +1,7 @@
 interface ICollapsibleProps {
-  isOpen: boolean;
-  maxHeight: number | undefined;
+  label: string;
   children: React.ReactNode;
+  maxHeight?: number;
 }
 
 export default ICollapsibleProps;

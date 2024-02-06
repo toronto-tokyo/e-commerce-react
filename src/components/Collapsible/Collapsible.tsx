@@ -1,26 +1,20 @@
 import React from 'react';
 import ICollapsibleProps from './Collapsible.interface';
-import useCollapsible from './Collapsible.hook';
+import useCollapsibleTest from './Collapsible.hook';
 
 const Collapsible: React.FC<ICollapsibleProps> = ({
-  label,
-  children,
+  isOpen,
   maxHeight,
+  children,
 }) => {
-  const { contentRef, height, toggleIsOpen } = useCollapsible({ maxHeight });
-
+  const { contentRef, height } = useCollapsibleTest({ isOpen, maxHeight });
   return (
-    <div>
-      <div onClick={toggleIsOpen}>
-        <h2 className="select-none cursor-pointer">{label}</h2>
-      </div>
-      <div
-        ref={contentRef}
-        className={`pl-3 overflow-y-scroll transition-[height] duration-200`}
-        style={{ height: `${height}px` }}
-      >
-        {children}
-      </div>
+    <div
+      ref={contentRef}
+      className={`overflow-y-scroll transition-[height] duration-200`}
+      style={{ height: `${height}px` }}
+    >
+      {children}
     </div>
   );
 };
