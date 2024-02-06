@@ -39,7 +39,8 @@ const ProductFilters: React.FC = () => {
     setSearchParams(searchParams);
   };
 
-  const handleBrandFilterClick = (filterValue: string) => {
+  const handleBrandFilterClick = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const filterValue = e.target.value;
     handleMultipleFilterClick({
       filterTitle: 'brands',
       filterValue,
@@ -47,7 +48,8 @@ const ProductFilters: React.FC = () => {
     });
   };
 
-  const handleColorsFilterClick = (filterValue: string) => {
+  const handleColorsFilterClick = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const filterValue = e.target.value;
     handleMultipleFilterClick({
       filterTitle: 'colors',
       filterValue,
@@ -86,63 +88,72 @@ const ProductFilters: React.FC = () => {
     1000
   );
 
+  const handleResetFiltersClick = () => {
+    searchParams.delete('brands');
+    searchParams.delete('colors');
+    searchParams.delete('min-price');
+    searchParams.delete('max-price');
+    setSearchParams(searchParams);
+  };
+
   return (
-    <div className="w-[250px] bg-white">
+    <div className="w-[250px] bg-white flex flex-col">
       <Collapsible label="Brand" maxHeight={150}>
-        <div
-          onChange={(e) => {
-            const target = e.target as HTMLInputElement;
-            const value = target.value;
-            handleBrandFilterClick(value);
-          }}
-        >
-          {brands?.type.name === 'enum' &&
-            brands?.type.values.map((brand) => (
-              <div key={brand.key}>
-                <input
-                  type="checkbox"
-                  name="brand"
-                  value={brand.key}
-                  id={brand.key}
-                  defaultChecked={searchBrands?.includes(brand.key)}
-                />
-                <label htmlFor={brand.key} className="select-none">
-                  {brand.label}
-                </label>
-              </div>
-            ))}
-        </div>
+        {brands?.type.name === 'enum' &&
+          brands?.type.values.map((brand) => (
+            <div key={brand.key}>
+              <input
+                type="checkbox"
+                name="brand"
+                value={brand.key}
+                id={brand.key}
+                checked={searchBrands?.includes(brand.key)}
+                onChange={handleBrandFilterClick}
+              />
+              <label htmlFor={brand.key} className="select-none">
+                {brand.label}
+              </label>
+            </div>
+          ))}
       </Collapsible>
       <Collapsible label="Colors" maxHeight={150}>
-        <div
-          onChange={(e) => {
-            const target = e.target as HTMLInputElement;
-            const value = target.value;
-            handleColorsFilterClick(value);
-          }}
-        >
-          {colors?.type.name === 'lenum' &&
-            colors?.type.values.map((color) => (
-              <div key={color.key}>
-                <input
-                  type="checkbox"
-                  name="color"
-                  value={color.key}
-                  id={color.key}
-                  defaultChecked={searchColors?.includes(color.key)}
-                />
-                <label htmlFor={color.key} className="select-none">
-                  {color.label.en}
-                </label>
-              </div>
-            ))}
-        </div>
+        {colors?.type.name === 'lenum' &&
+          colors?.type.values.map((color) => (
+            <div key={color.key}>
+              <input
+                type="checkbox"
+                name="color"
+                value={color.key}
+                id={color.key}
+                checked={searchColors?.includes(color.key)}
+                onChange={handleColorsFilterClick}
+              />
+              <label htmlFor={color.key} className="select-none">
+                {color.label.en}
+              </label>
+            </div>
+          ))}
       </Collapsible>
       <PriceFilter
         minPriceValue={searchMinPrice}
         maxPriceValue={searchMaxPrice}
         handlePriceValuesChange={handlePriceChange}
+        key={`${searchMinPrice}${searchMaxPrice}`}
       />
+      <button
+        className="
+      bg-red-500 
+        text-lg 
+        text-white 
+        tracking-wider 
+        rounded-md 
+        px-5
+        py-2 
+        self-center"
+        onClick={handleResetFiltersClick}
+      >
+        Reset
+      </button>
     </div>
   );
 };
