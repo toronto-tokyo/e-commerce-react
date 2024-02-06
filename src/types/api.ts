@@ -182,4 +182,6 @@ interface IAttributeLocalizedEnumValue {
 export interface IProductsRequestParams {
   brands: string | null;
   colors: string | null;
+  minPrice: string | null;
+  maxPrice: string | null;
 }

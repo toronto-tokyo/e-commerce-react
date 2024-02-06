@@ -13,7 +13,7 @@ export const productsApi = createApi({
   }),
   endpoints: (builder) => ({
     getProducts: builder.query<IPagedQueryResult, IProductsRequestParams>({
-      query: ({ brands, colors }) => {
+      query: ({ brands, colors, minPrice, maxPrice }) => {
         let filterParams = '';
         if (brands) {
           filterParams += `filter.query=variants.attributes.designer.key:${brands}&`;
@@ -21,8 +21,13 @@ export const productsApi = createApi({
         if (colors) {
           filterParams += `filter.query=variants.attributes.color.key:${colors}&`;
         }
+        if (minPrice || maxPrice) {
+          const searchMinPrice = minPrice ? Number(minPrice) * 100 : '*';
+          const searchMaxPrice = maxPrice ? Number(maxPrice) * 100 : '*';
+          filterParams += `filter.query=variants.price.centAmount:range (${searchMinPrice} to ${searchMaxPrice})&`;
+        }
         const facet =
-          'facet=variants.attributes.designer.key&facet=variants.attributes.color.key';
+          'facet=variants.attributes.designer.key&facet=variants.attributes.color.key&facet=variants.price.centAmount&';
 
         const searchParams = `${filterParams}${facet}`;
         return {

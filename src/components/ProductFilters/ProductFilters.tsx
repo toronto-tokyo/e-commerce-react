@@ -1,7 +1,10 @@
 import Collapsible from 'components/Collapsible';
+import PriceFilter from 'components/PriceFilter';
 import useGetAttributes from 'hook/useGetAttributes';
 import React from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { useDebouncedCallback } from 'use-debounce';
+import isPriceFilterValid from 'utils/isPriceFilterValid';
 
 const ProductFilters: React.FC = () => {
   const data = useGetAttributes();
@@ -10,6 +13,8 @@ const ProductFilters: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const searchBrands = searchParams.get('brands')?.split(',') || [];
   const searchColors = searchParams.get('colors')?.split(',') || [];
+  const searchMinPrice = searchParams.get('min-price') || '';
+  const searchMaxPrice = searchParams.get('max-price') || '';
 
   const handleMultipleFilterClick = ({
     filterTitle,
@@ -49,6 +54,37 @@ const ProductFilters: React.FC = () => {
       currentFilterValues: searchColors,
     });
   };
+
+  const handleSingleFilterChange = ({
+    title,
+    value,
+  }: {
+    title: string;
+    value: string;
+  }) => {
+    if (value) {
+      searchParams.set(title, value);
+    } else {
+      searchParams.delete(title);
+    }
+    setSearchParams(searchParams);
+  };
+
+  const handlePriceChange = useDebouncedCallback(
+    ({ minPrice, maxPrice }: { minPrice: string; maxPrice: string }) => {
+      if (isPriceFilterValid({ minPrice, maxPrice })) {
+        handleSingleFilterChange({
+          title: 'min-price',
+          value: minPrice,
+        });
+        handleSingleFilterChange({
+          title: 'max-price',
+          value: maxPrice,
+        });
+      }
+    },
+    1000
+  );
 
   return (
     <div className="w-[250px] bg-white">
@@ -102,6 +138,11 @@ const ProductFilters: React.FC = () => {
             ))}
         </div>
       </Collapsible>
+      <PriceFilter
+        minPriceValue={searchMinPrice}
+        maxPriceValue={searchMaxPrice}
+        handlePriceValuesChange={handlePriceChange}
+      />
     </div>
   );
 };

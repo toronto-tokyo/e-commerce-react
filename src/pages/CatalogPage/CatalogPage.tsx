@@ -8,6 +8,8 @@ const CatalogPage: React.FC = () => {
   const [searchParams] = useSearchParams();
   const brands = searchParams.get('brands');
   const colors = searchParams.get('colors');
+  const minPrice = searchParams.get('min-price');
+  const maxPrice = searchParams.get('max-price');
   const { data } = useGetProductsQuery({
     brands:
       brands &&
@@ -21,6 +23,8 @@ const CatalogPage: React.FC = () => {
         .split(',')
         .map((item) => `"${item}"`)
         .join(','),
+    minPrice,
+    maxPrice,
   });
   return (
     <div className="grow max-w-7xl m-auto flex">
