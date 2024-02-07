@@ -2,6 +2,7 @@ import React from 'react';
 import ISortPanelProps from './SortPanel.interface';
 import CollapsibleTest from 'components/Collapsible';
 import useSortPanel from './SortPanel.hook';
+import CollapsibleToggleIcon from 'components/CollapsibleToggleIcon';
 
 const SortPanel: React.FC<ISortPanelProps> = ({
   selectedValue,
@@ -12,12 +13,17 @@ const SortPanel: React.FC<ISortPanelProps> = ({
 
   return (
     <div className="relative w-max" ref={panelRef}>
-      <div ref={inputRef} onClick={() => setIsOpen((prev) => !prev)}>
+      <div
+        className="flex bg-white"
+        ref={inputRef}
+        onClick={() => setIsOpen((prev) => !prev)}
+      >
         <input
           className="outline-none cursor-pointer pl-2"
           value={selectedValue}
           readOnly
         />
+        <CollapsibleToggleIcon isOpen={isOpen} />
       </div>
       <div
         className={`w-full absolute z-10 bg-white top-[${inputRef.current?.scrollHeight}px] left-0`}
