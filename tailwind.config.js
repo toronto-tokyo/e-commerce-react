@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       gridTemplateColumns: {
-        'product-cards': 'repeat(auto-fit, minmax(250px, 1fr))',
+        'product-cards': 'repeat(auto-fit, minmax(225px, 1fr))',
       },
     },
   },

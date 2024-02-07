@@ -14,12 +14,12 @@ const SortPanel: React.FC<ISortPanelProps> = ({
   return (
     <div className="relative w-max" ref={panelRef}>
       <div
-        className="flex bg-white"
+        className="flex bg-white items-center hover:bg-blue-100"
         ref={inputRef}
         onClick={() => setIsOpen((prev) => !prev)}
       >
         <input
-          className="outline-none cursor-pointer pl-2"
+          className="outline-none cursor-pointer py-1 px-2 bg-inherit"
           value={selectedValue}
           readOnly
         />
@@ -37,7 +37,7 @@ const SortPanel: React.FC<ISortPanelProps> = ({
                   setIsOpen(false);
                   handleChange(item.value);
                 }}
-                className="cursor-pointer hover:bg-blue-100 py-1 px-2"
+                className="select-none cursor-pointer py-1 px-2 hover:bg-blue-50"
               >
                 {item.label}
               </li>

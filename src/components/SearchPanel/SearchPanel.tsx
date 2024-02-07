@@ -17,7 +17,7 @@ const SearchPanel: React.FC<ISearchPanelProps> = ({
 
   return (
     <form
-      className={`grow border rounded overflow-hidden flex ${isFocus ? 'border-slate-500' : ''}`}
+      className={`m-auto max-w-96 border rounded overflow-hidden flex justify-center ${isFocus ? 'border-slate-500' : ''}`}
       onSubmit={handleSubmit}
     >
       <input

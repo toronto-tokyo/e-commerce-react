@@ -20,6 +20,7 @@ const ProductCard: React.FC<IProductCardProps> = ({ product }) => {
     <Link to={`/product/${productId}`}>
       <article
         className="
+        size-full
         border 
         bg-white 
         rounded-lg 

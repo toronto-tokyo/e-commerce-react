@@ -50,15 +50,19 @@ const CatalogPage: React.FC = () => {
   const searchValue = searchQuery || '';
 
   return (
-    <div className="grow max-w-7xl m-auto flex">
+    <div className="grow max-w-7xl mx-auto flex">
       <ProductFilters />
-      <div>
-        <SearchPanel searchValue={searchValue} handleSearch={handleSearch} />
-        <SortPanel
-          selectedValue={sortSelectedValue}
-          values={SortProductsValues}
-          handleChange={handleSortProductsChange}
-        />
+      <div className="grow p-7 flex flex-col">
+        <div className="mb-3">
+          <SearchPanel searchValue={searchValue} handleSearch={handleSearch} />
+        </div>
+        <div className="flex justify-end mb-10">
+          <SortPanel
+            selectedValue={sortSelectedValue}
+            values={SortProductsValues}
+            handleChange={handleSortProductsChange}
+          />
+        </div>
         <ProductsList items={data?.results} />
       </div>
     </div>
