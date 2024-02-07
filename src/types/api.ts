@@ -185,4 +185,5 @@ export interface IProductsRequestParams {
   minPrice: string | null;
   maxPrice: string | null;
   sort: string;
+  searchQuery: string | null;
 }

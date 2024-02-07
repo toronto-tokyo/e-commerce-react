@@ -5,6 +5,7 @@ import ProductFilters from 'components/ProductFilters';
 import { useSearchParams } from 'react-router-dom';
 import SortPanel from 'components/SortPanel';
 import { DefaultSortProductValue, SortProductsValues } from './data';
+import SearchPanel from 'components/SearchPanel';
 
 const CatalogPage: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -13,6 +14,7 @@ const CatalogPage: React.FC = () => {
   const minPrice = searchParams.get('min-price');
   const maxPrice = searchParams.get('max-price');
   const sort = searchParams.get('sort') || DefaultSortProductValue.value;
+  const searchQuery = searchParams.get('q');
   const { data } = useGetProductsQuery({
     brands:
       brands &&
@@ -29,6 +31,7 @@ const CatalogPage: React.FC = () => {
     minPrice,
     maxPrice,
     sort,
+    searchQuery,
   });
 
   const sortSelectedValue =
@@ -39,18 +42,23 @@ const CatalogPage: React.FC = () => {
     setSearchParams(searchParams);
   };
 
+  const handleSearch = (searchValue: string) => {
+    searchValue ? searchParams.set('q', searchValue) : searchParams.delete('q');
+    setSearchParams(searchParams);
+  };
+
+  const searchValue = searchQuery || '';
+
   return (
     <div className="grow max-w-7xl m-auto flex">
       <ProductFilters />
       <div>
-        <div className="flex">
-          <div className="grow"></div>
-          <SortPanel
-            selectedValue={sortSelectedValue}
-            values={SortProductsValues}
-            handleChange={handleSortProductsChange}
-          />
-        </div>
+        <SearchPanel searchValue={searchValue} handleSearch={handleSearch} />
+        <SortPanel
+          selectedValue={sortSelectedValue}
+          values={SortProductsValues}
+          handleChange={handleSortProductsChange}
+        />
         <ProductsList items={data?.results} />
       </div>
     </div>
