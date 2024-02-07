@@ -15,7 +15,19 @@ const ProductCard: React.FC<IProductCardProps> = ({ product }) => {
   } = useProductCard({ product });
 
   return (
-    <article className="border bg-white rounded-lg flex flex-col">
+    <article
+      className="
+        border 
+        bg-white 
+        rounded-lg 
+        flex 
+        flex-col
+        cursor-pointer
+        hover:shadow-lg
+        hover:scale-105
+        transition
+      "
+    >
       <div className="relative pb-[60%]">
         <img
           className="size-full absolute top-0 left-0 object-scale-down"
