@@ -11,7 +11,7 @@ const Collapsible: React.FC<ICollapsibleProps> = ({
   return (
     <div
       ref={contentRef}
-      className={`overflow-y-scroll transition-[height] duration-200`}
+      className={`overflow-y-scroll transition-[height] duration-200 scrollbar`}
       style={{ height: `${height}px` }}
     >
       {children}
