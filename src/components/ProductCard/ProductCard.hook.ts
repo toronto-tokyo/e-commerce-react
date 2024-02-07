@@ -14,7 +14,7 @@ const useProductCard = ({ product }: IUseProductProps) => {
   if (!prices) {
     throw new Error(`There's no prices in product ${id}`);
   }
-
+  const productId = product.id;
   const imgSrc = images[0].url;
   const localeName = name.en;
   const priceValue = prices[0].value.centAmount;
@@ -26,6 +26,7 @@ const useProductCard = ({ product }: IUseProductProps) => {
     discountValue && transformCentToEuro(discountValue);
 
   return {
+    productId,
     imgSrc,
     localeName,
     priceValue,

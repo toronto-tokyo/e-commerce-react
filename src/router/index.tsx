@@ -7,6 +7,7 @@ import SignInPage from 'pages/SignInPage';
 import SignUpPage from 'pages/SignUpPage';
 import AuthPrivateRoute from 'hoc/AuthPrivateRoute';
 import CatalogPage from 'pages/CatalogPage';
+import ProductPage from 'pages/ProductPage';
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: 'catalog',
         element: <CatalogPage />,
+      },
+      {
+        path: 'product/:id',
+        element: <ProductPage />,
       },
       {
         path: 'sign-in',
