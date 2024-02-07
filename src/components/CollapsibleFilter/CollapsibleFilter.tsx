@@ -14,7 +14,10 @@ const CollapsibleFilter: React.FC<ICollapsibleProps> = ({
 
   return (
     <div>
-      <div onClick={toggleIsOpen} className="flex items-center cursor-pointer">
+      <div
+        onClick={toggleIsOpen}
+        className="flex items-center cursor-pointer bold font-bold py-3 px-3 hover:bg-blue-100"
+      >
         <h2 className="grow select-none">{label}</h2>
         <CollapsibleToggleIcon isOpen={isOpen} />
       </div>

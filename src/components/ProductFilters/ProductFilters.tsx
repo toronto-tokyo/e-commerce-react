@@ -1,4 +1,5 @@
 import CollapsibleFilter from 'components/CollapsibleFilter';
+import Divider from 'components/Divider';
 import PriceFilter from 'components/PriceFilter';
 import useGetAttributes from 'hook/useGetAttributes';
 import React from 'react';
@@ -97,12 +98,18 @@ const ProductFilters: React.FC = () => {
   };
 
   return (
-    <div className="w-[250px] bg-white flex flex-col">
-      <CollapsibleFilter label="Brand" maxHeight={150}>
+    <div className="w-[250px] bg-white flex flex-col py-5">
+      <h2 className="text-center font-bold text-si text-2xl mb-5">Filters</h2>
+      <Divider />
+      <CollapsibleFilter label="Brand" maxHeight={200}>
         {brands?.type.name === 'enum' &&
           brands?.type.values.map((brand) => (
-            <div key={brand.key}>
+            <label
+              key={brand.key}
+              className="flex gap-1 select-none cursor-pointer py-1 px-4 hover:bg-blue-50"
+            >
               <input
+                className="cursor-pointer"
                 type="checkbox"
                 name="brand"
                 value={brand.key}
@@ -110,17 +117,20 @@ const ProductFilters: React.FC = () => {
                 checked={searchBrands?.includes(brand.key)}
                 onChange={handleBrandFilterClick}
               />
-              <label htmlFor={brand.key} className="select-none">
-                {brand.label}
-              </label>
-            </div>
+              {brand.label}
+            </label>
           ))}
       </CollapsibleFilter>
-      <CollapsibleFilter label="Colors" maxHeight={150}>
+      <Divider />
+      <CollapsibleFilter label="Colors" maxHeight={200}>
         {colors?.type.name === 'lenum' &&
           colors?.type.values.map((color) => (
-            <div key={color.key}>
+            <label
+              key={color.key}
+              className="flex gap-1 select-none cursor-pointer py-1 px-4 hover:bg-blue-50"
+            >
               <input
+                className="cursor-pointer"
                 type="checkbox"
                 name="color"
                 value={color.key}
@@ -128,18 +138,18 @@ const ProductFilters: React.FC = () => {
                 checked={searchColors?.includes(color.key)}
                 onChange={handleColorsFilterClick}
               />
-              <label htmlFor={color.key} className="select-none">
-                {color.label.en}
-              </label>
-            </div>
+              {color.label.en}
+            </label>
           ))}
       </CollapsibleFilter>
+      <Divider />
       <PriceFilter
         minPriceValue={searchMinPrice}
         maxPriceValue={searchMaxPrice}
         handlePriceValuesChange={handlePriceChange}
         key={`${searchMinPrice}${searchMaxPrice}`}
       />
+      <Divider />
       <button
         className="
       bg-red-500 
@@ -149,7 +159,8 @@ const ProductFilters: React.FC = () => {
         rounded-md 
         px-5
         py-2 
-        self-center"
+        self-center
+        mt-5"
         onClick={handleResetFiltersClick}
       >
         Reset
