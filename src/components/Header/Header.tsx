@@ -8,6 +8,7 @@ import NavLinkItem from 'components/NavLinkItem/NavLinkItem';
 import useHeader from './Header.hook';
 import NavButtonItem from 'components/NavButtonItem';
 import { PiSignOutBold } from 'react-icons/pi';
+import { HiOutlineShoppingBag } from 'react-icons/hi';
 
 const Header: React.FC = () => {
   const { isLoggedIn, handleSignOut } = useHeader();
@@ -19,6 +20,15 @@ const Header: React.FC = () => {
         <NavLinkItem to="/">
           <AiOutlineHome className="text-red-500" />
           <span>Home</span>
+        </NavLinkItem>
+      ),
+    },
+    {
+      key: 'catalog',
+      element: (
+        <NavLinkItem to="catalog">
+          <HiOutlineShoppingBag className="text-violet-500" />
+          <span>Catalog</span>
         </NavLinkItem>
       ),
     },
@@ -49,6 +59,15 @@ const Header: React.FC = () => {
         <NavLinkItem to="/">
           <AiOutlineHome className="text-red-500" />
           <span>Home</span>
+        </NavLinkItem>
+      ),
+    },
+    {
+      key: 'catalog',
+      element: (
+        <NavLinkItem to="catalog">
+          <HiOutlineShoppingBag className="text-violet-500" />
+          <span>Catalog</span>
         </NavLinkItem>
       ),
     },
