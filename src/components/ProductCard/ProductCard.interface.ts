@@ -1,7 +1,7 @@
-import { IProduct } from 'types/api';
+import { IProductProjection } from 'types/api';
 
 interface IProductCardProps {
-  product: IProduct;
+  product: IProductProjection;
 }
 
 export default IProductCardProps;

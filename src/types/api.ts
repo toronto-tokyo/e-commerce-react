@@ -27,11 +27,11 @@ export interface IPagedQueryResult {
   offset: number;
   count: number;
   total: number;
-  results: IProduct[];
+  results: IProductProjection[];
   facets: IFacetResult;
 }
 
-export interface IProduct {
+export interface IProductProjection {
   id: string;
   version: number;
   key: string;
@@ -52,7 +52,7 @@ interface IProductVariant {
   key?: string;
   sku?: string;
   prices?: IPrice[];
-  attributes?: IAttribute;
+  attributes?: IAttribute[];
   images: IImage[];
 }
 
@@ -186,4 +186,35 @@ export interface IProductsRequestParams {
   maxPrice: string | null;
   sort: string;
   searchQuery: string | null;
+}
+
+export interface IProductRequestParams {
+  id: string | undefined;
+}
+
+export interface IProduct {
+  id: string;
+  version: number;
+  key: string;
+  productType: IProductTypeReference;
+  masterData: IProductCatalogData;
+}
+
+interface IProductCatalogData {
+  published: boolean;
+  current: IProductData;
+  staged: IProductData;
+  hasStagedChanges: boolean;
+}
+
+interface IProductData {
+  name: ILocalizedString;
+  categories: ICategory[];
+  description: ILocalizedString;
+  slug: ILocalizedString;
+  metaTitle: ILocalizedString;
+  metaDescription: ILocalizedString;
+  metaKeywords: ILocalizedString;
+  masterVariant: IProductVariant;
+  variants: IProductVariant[];
 }

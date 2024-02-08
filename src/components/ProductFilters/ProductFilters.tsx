@@ -1,4 +1,4 @@
-import CollapsibleFilter from 'components/CollapsibleFilter';
+import CollapsibleWithLabel from 'components/CollapsibleWithLabel';
 import Divider from 'components/Divider';
 import PriceFilter from 'components/PriceFilter';
 import useGetAttributes from 'hook/useGetAttributes';
@@ -101,7 +101,7 @@ const ProductFilters: React.FC = () => {
     <div className="w-[250px] bg-white flex flex-col py-5">
       <h2 className="text-center font-bold text-si text-2xl mb-5">Filters</h2>
       <Divider />
-      <CollapsibleFilter label="Brand" maxHeight={200}>
+      <CollapsibleWithLabel label="Brand" maxHeight={200} colorMode="blue">
         {brands?.type.name === 'enum' &&
           brands?.type.values.map((brand) => (
             <label
@@ -120,9 +120,9 @@ const ProductFilters: React.FC = () => {
               {brand.label}
             </label>
           ))}
-      </CollapsibleFilter>
+      </CollapsibleWithLabel>
       <Divider />
-      <CollapsibleFilter label="Colors" maxHeight={200}>
+      <CollapsibleWithLabel label="Colors" maxHeight={200} colorMode="blue">
         {colors?.type.name === 'lenum' &&
           colors?.type.values.map((color) => (
             <label
@@ -141,7 +141,7 @@ const ProductFilters: React.FC = () => {
               {color.label.en}
             </label>
           ))}
-      </CollapsibleFilter>
+      </CollapsibleWithLabel>
       <Divider />
       <PriceFilter
         minPriceValue={searchMinPrice}

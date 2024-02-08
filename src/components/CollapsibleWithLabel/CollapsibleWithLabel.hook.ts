@@ -4,7 +4,7 @@ import { useState } from 'react';
 //   maxHeight: number | undefined;
 // }
 
-const useCollapsible = () => {
+const useCollapsibleWithLabel = () => {
   const [isOpen, setIsOpen] = useState(false);
   // const [height, setHeight] = useState(0);
   // const contentRef = useRef<HTMLDivElement>(null);
@@ -30,4 +30,4 @@ const useCollapsible = () => {
     toggleIsOpen,
   };
 };
-export default useCollapsible;
+export default useCollapsibleWithLabel;
