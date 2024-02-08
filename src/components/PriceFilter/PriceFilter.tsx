@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import IPriceFilterProps from './PriceFilter.interface';
-import CollapsibleFilter from 'components/CollapsibleFilter';
+import CollapsibleWithLabel from 'components/CollapsibleWithLabel';
 import isPriceFilterValid from 'utils/isPriceFilterValid';
 
 const PriceFilter: React.FC<IPriceFilterProps> = ({
@@ -19,7 +19,7 @@ const PriceFilter: React.FC<IPriceFilterProps> = ({
   }, [minPrice, maxPrice, handlePriceValuesChange]);
 
   return (
-    <CollapsibleFilter label="Price" maxHeight={150}>
+    <CollapsibleWithLabel label="Price" maxHeight={150} colorMode="blue">
       <div className="flex justify-around items-center">
         <input
           className="outline-none w-[45%] border p-2"
@@ -44,7 +44,7 @@ const PriceFilter: React.FC<IPriceFilterProps> = ({
           </p>
         )}
       </div>
-    </CollapsibleFilter>
+    </CollapsibleWithLabel>
   );
 };
 

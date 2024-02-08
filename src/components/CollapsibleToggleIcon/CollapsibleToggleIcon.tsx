@@ -1,10 +1,18 @@
 import React from 'react';
-import ICollapsibleToggleIconProps from './CollapsibleToggleIcon.interface';
+import ICollapsibleToggleIconProps, {
+  ColorMode,
+} from './CollapsibleToggleIcon.interface';
 import { IoIosArrowDropdownCircle } from 'react-icons/io';
 
 const CollapsibleToggleIcon: React.FC<ICollapsibleToggleIconProps> = ({
   isOpen,
+  colorMode,
 }) => {
+  const colorModeIconStyles: Record<ColorMode, string> = {
+    blue: 'text-blue-500',
+    gray: 'text-gray-600',
+  };
+
   return (
     <div
       className={`
@@ -16,7 +24,7 @@ const CollapsibleToggleIcon: React.FC<ICollapsibleToggleIconProps> = ({
       `}
     >
       <IoIosArrowDropdownCircle
-        className={`text-blue-500 duration-200 ${isOpen ? 'rotate-180' : ''}`}
+        className={`duration-200 ${colorMode && colorModeIconStyles[colorMode]} ${isOpen ? 'rotate-180' : ''}`}
       />
     </div>
   );

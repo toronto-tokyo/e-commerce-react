@@ -1,8 +1,8 @@
-import { IProduct } from 'types/api';
+import { IProductProjection } from 'types/api';
 import transformCentToEuro from 'utils/transformCentToEuro';
 
 interface IUseProductProps {
-  product: IProduct;
+  product: IProductProjection;
 }
 
 const useProductCard = ({ product }: IUseProductProps) => {

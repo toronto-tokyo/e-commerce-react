@@ -1,6 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import {
   IPagedQueryResult,
+  IProduct,
+  IProductRequestParams,
   IProductTypePagedQueryResponse,
   IProductsRequestParams,
 } from 'types/api';
@@ -67,7 +69,20 @@ export const productsApi = createApi({
         },
       }),
     }),
+    getProduct: builder.query<IProduct, IProductRequestParams>({
+      query: ({ id }) => ({
+        url: `/products/${id}`,
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${getTokens().accessToken}`,
+        },
+      }),
+    }),
   }),
 });
 
-export const { useGetProductsQuery, useGetProductTypesQuery } = productsApi;
+export const {
+  useGetProductsQuery,
+  useGetProductTypesQuery,
+  useGetProductQuery,
+} = productsApi;
